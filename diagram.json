@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "author": "Smart Eldercare Band",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled", "top": -150, "left": -120, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-mpu6050", "id": "mpu", "top": -150, "left": 100, "attrs": {} },
+    { "type": "wokwi-ds18b20", "id": "temp", "top": -150, "left": 260, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "hr_pot", "top": 180, "left": -150, "attrs": { "label": "Heart Rate Sim" } },
+    { "type": "wokwi-pushbutton", "id": "btn_med", "top": 180, "left": 20, "attrs": { "color": "yellow", "label": "Medicine" } },
+    { "type": "wokwi-pushbutton", "id": "btn_sos", "top": 180, "left": 120, "attrs": { "color": "red", "label": "SOS" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 180, "left": 220, "attrs": { "volume": "0.1" } },
+    { "type": "wokwi-led", "id": "led_red", "top": -50, "left": -150, "attrs": { "color": "red", "label": "Red Alert" } },
+    { "type": "wokwi-led", "id": "led_yellow", "top": 10, "left": -150, "attrs": { "color": "yellow", "label": "Yellow Warning" } },
+    { "type": "wokwi-led", "id": "led_green", "top": 70, "left": -150, "attrs": { "color": "green", "label": "Normal" } },
+    { "type": "wokwi-resistor", "id": "r_red", "top": -40, "left": -100, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r_yellow", "top": 20, "left": -100, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r_green", "top": 80, "left": -100, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:GND.1", "oled:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "oled:VCC", "red", [ "v0" ] ],
+    [ "esp:21", "oled:SDA", "blue", [ "v0" ] ],
+    [ "esp:22", "oled:SCL", "yellow", [ "v0" ] ],
+
+    [ "esp:GND.1", "mpu:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "mpu:VCC", "red", [ "v0" ] ],
+    [ "esp:21", "mpu:SDA", "blue", [ "v0" ] ],
+    [ "esp:22", "mpu:SCL", "yellow", [ "v0" ] ],
+
+    [ "esp:GND.1", "temp:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "temp:VCC", "red", [ "v0" ] ],
+    [ "esp:4", "temp:DQ", "green", [ "v0" ] ],
+
+    [ "esp:GND.1", "hr_pot:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "hr_pot:VCC", "red", [ "v0" ] ],
+    [ "esp:33", "hr_pot:SIG", "orange", [ "v0" ] ],
+
+    [ "esp:GND.1", "btn_med:1.1", "black", [ "v0" ] ],
+    [ "esp:25", "btn_med:2.1", "yellow", [ "v0" ] ],
+
+    [ "esp:GND.1", "btn_sos:1.1", "black", [ "v0" ] ],
+    [ "esp:26", "btn_sos:2.1", "red", [ "v0" ] ],
+
+    [ "esp:GND.1", "buzzer:1", "black", [ "v0" ] ],
+    [ "esp:27", "buzzer:2", "purple", [ "v0" ] ],
+
+    [ "esp:14", "r_red:1", "red", [ "v0" ] ],
+    [ "r_red:2", "led_red:A", "red", [ "v0" ] ],
+    [ "led_red:C", "esp:GND.1", "black", [ "v0" ] ],
+
+    [ "esp:12", "r_yellow:1", "yellow", [ "v0" ] ],
+    [ "r_yellow:2", "led_yellow:A", "yellow", [ "v0" ] ],
+    [ "led_yellow:C", "esp:GND.1", "black", [ "v0" ] ],
+
+    [ "esp:13", "r_green:1", "green", [ "v0" ] ],
+    [ "r_green:2", "led_green:A", "green", [ "v0" ] ],
+    [ "led_green:C", "esp:GND.1", "black", [ "v0" ] ]
+  ]
+}
